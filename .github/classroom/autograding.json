@@ -1,0 +1,164 @@
+{
+  "tests": [
+    {
+      "name": "Default Constructor - 2pt",
+      "setup": "cmake .;make Dictionary_Tests",
+      "run": "timeout 5m ./Dictionary_Tests \"Dictionary Tests\" -c \"Default Constructor - 2pt\"",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 5,
+      "points": 2
+    },
+    {
+      "name": "Constructor with file - 3pt",
+      "setup": "cmake .;make Dictionary_Tests",
+      "run": "timeout 5m ./Dictionary_Tests \"Dictionary Tests\" -c \"Constructor with file - 2pt\"",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 5,
+      "points": 3
+    },
+    {
+      "name": "AddWord and IsWord test - 8 pts",
+      "setup": "cmake .;make Dictionary_Tests",
+      "run": "timeout 5m ./Dictionary_Tests \"Dictionary Tests\" -c \"AddWord and IsWord test - 8 pts\"",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 5,
+      "points": 8
+    },
+    {
+      "name": "IsPrefix test - 4pts",
+      "setup": "cmake .;make Dictionary_Tests",
+      "run": "timeout 5m ./Dictionary_Tests \"Dictionary Tests\" -c \"IsPrefix test - 4pts\"",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 5,
+      "points": 4
+    },
+    {
+      "name": "Bad Character Test - 2pts",
+      "setup": "cmake .;make Dictionary_Tests",
+      "run": "timeout 5m ./Dictionary_Tests \"Dictionary Tests\" -c \"Bad Character Test - 2pts\"",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 5,
+      "points": 2
+    },
+    {
+      "name": "LoadDictionary test - 4pts",
+      "setup": "cmake .;make Dictionary_Tests",
+      "run": "timeout 5m ./Dictionary_Tests \"Dictionary Tests\" -c \"LoadDictionary test - 4pts\"",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 5,
+      "points": 4
+    },
+    {
+      "name": "SaveDictionary test - 4pts",
+      "setup": "cmake .;make Dictionary_Tests",
+      "run": "timeout 5m ./Dictionary_Tests \"Dictionary Tests\" -c \"SaveDictionary test - 4pts\"",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 5,
+      "points": 4
+    },
+    {
+      "name": "MakeEmpty tests - 4pts",
+      "setup": "cmake .;make Dictionary_Tests",
+      "run": "timeout 5m ./Dictionary_Tests \"Dictionary Tests\" -c \"MakeEmpty tests - 4pts\"",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 5,
+      "points": 4
+    },
+    {
+      "name": "Copy Constructor test - 2pts",
+      "setup": "cmake .;make Dictionary_Tests",
+      "run": "timeout 5m ./Dictionary_Tests \"Dictionary Tests\" -c \"Copy Constructor test - 2pts\"",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 5,
+      "points": 2
+    },
+    {
+      "name": "Assignment Operator test - 2pts",
+      "setup": "cmake .;make Dictionary_Tests",
+      "run": "timeout 5m ./Dictionary_Tests \"Dictionary Tests\" -c \"Assignment Operator test - 2pts\"",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 5,
+      "points": 2
+    },
+    {
+      "name": "Default constructor - 2pts",
+      "setup": "cmake .;make Boggle_Tests",
+      "run": "timeout 5m ./Boggle_Tests \"Boggle Tests\" -c \"Default constructor - 2pts\"",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 5,
+      "points": 2
+    },
+    {
+      "name": "Boggle(string filename) constructor - 2pts",
+      "setup": "cmake .;make Boggle_Tests",
+      "run": "timeout 5m ./Boggle_Tests \"Boggle Tests\" -c \"Boggle(string filename) constructor - 2pts\"",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 5,
+      "points": 2
+    },
+    {
+      "name": "SetBoard - 2pts",
+      "setup": "cmake .;make Boggle_Tests",
+      "run": "timeout 5m ./Boggle_Tests \"Boggle Tests\" -c \"SetBoard - 2pts\"",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 5,
+      "points": 2
+    },
+    {
+      "name": "SolveBoard Test - 8pts",
+      "setup": "cmake .;make Boggle_Tests",
+      "run": "timeout 5m ./Boggle_Tests \"Boggle Tests\" -c \"SolveBoard Test - 8pts\"",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 5,
+      "points": 8
+    },
+    {
+      "name": "SolveBoard Print Test - 8pts",
+      "setup": "cmake .;make Boggle_Tests",
+      "run": "timeout 5m ./Boggle_Tests \"Boggle Tests\" -c \"SolveBoard Print Test - 8pts\"",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 5,
+      "points": 8
+    },
+    {
+      "name": "WordsFound - 8pts",
+      "setup": "cmake .;make Boggle_Tests",
+      "run": "timeout 5m ./Boggle_Tests \"Boggle Tests\" -c \"WordsFound - 8pts\"",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 5,
+      "points": 8
+    }
+  ]
+}
