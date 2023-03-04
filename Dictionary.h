@@ -26,7 +26,7 @@ class Dictionary
 
 public:
     Dictionary();
-    ~Dictionary();  // I will not require this
+    //~Dictionary();  // I will not require this
     Dictionary(const Dictionary& otherDict);    // copy constructor
     explicit Dictionary(string filename);       // The keyword explicit is used to tell the compiler
                                                 // that this is not a conversion constructor.
@@ -48,9 +48,22 @@ private:
     public:
         // Your node structure here.
         // You can also use a struct if you like.
-
+        struct Node* children[NUM_CHARS]; //each index represents a character
+        bool IsWord;
+        bool IsPrefix;
+        Node* left = nullptr;
+        Node* right = nullptr;
+        Node* next;
+        //create object of Node
+        Node(){
+            IsWord = false;
+            for(int i = 0; i < NUM_CHARS; i++){ //Make all nodes to null
+                children[i] = nullptr;
+            }
+        }
         // It is strongly recommended you create a constructor
         // to set default values
+
     };
 
     Node* root;
