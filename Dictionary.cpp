@@ -27,7 +27,9 @@ Dictionary::Dictionary(const Dictionary &otherDict) {
 }
 
 Dictionary::Dictionary(string filename) {
-
+    root = new Node;
+    numWords = 0;
+    LoadDictionaryFile(filename);
 }
 
 Dictionary &Dictionary::operator=(const Dictionary &otherDict) {
@@ -53,13 +55,11 @@ void Dictionary::LoadDictionaryFile(string filename) {
 }
 
 void Dictionary::SaveDictionaryFile(string filename) {
-    ofstream dictFile;
-    dictFile.open(filename);
-    if(!dictFile.is_open()){
-        throw DictionaryError("failed to open");
+    ofstream outFile(filename);
+    if (!outFile.is_open()) {
+        throw DictionaryError(filename + " failed to open");
     }
-    // Notice we start with the empty string as the prefix.
-    SaveDictionaryHelper(root, "", dictFile);
+    SaveDictionaryHelper(root, "", outFile);
 }
 
 void Dictionary::AddWord(string word) {
@@ -125,8 +125,14 @@ int Dictionary::WordCount() {
 
 void Dictionary::copyOther(const Dictionary &otherDict) {
     MakeEmpty();
-    copyHelper(root, otherDict.root);
+
+    // copy over the number of words from otherDict
     numWords = otherDict.numWords;
+
+    // recursively copy the tree
+    copyHelper(root, otherDict.root);
+
+    return;
 }
 
 void Dictionary::destroyHelper(Dictionary::Node *thisTree) {
@@ -147,21 +153,25 @@ void Dictionary::copyHelper(Dictionary::Node *&thisTree, Dictionary::Node *other
 
     thisTree = new Node;
     thisTree->IsWord = otherTree->IsWord;
-    copyHelper(thisTree->left, otherTree->left);
-    copyHelper(thisTree->right, otherTree->right);
+
+    for (int i = 0; i < NUM_CHARS; i++) {
+        copyHelper(thisTree->children[i], otherTree->children[i]);
+    }
 }
 
-void Dictionary::SaveDictionaryHelper(Dictionary::Node *curr, string currPrefix, ofstream &outFile) {
-    if (curr == nullptr)
-        return;
 
-    // If the path to this node is a number, then we write it
-    // to the file.
+void Dictionary::SaveDictionaryHelper(Dictionary::Node *curr, string currPrefix, ofstream &outFile) {
+    if (curr == nullptr) {  // base case: reached a null node
+        return;
+    }
+
     if (curr->IsWord) {
         outFile << currPrefix << endl;
     }
 
-    // Notice how we add a digit to the currPrefix
-    SaveDictionaryHelper(curr->left, currPrefix+"left", outFile);
-    SaveDictionaryHelper(curr->right, currPrefix+"right", outFile);
+    for (int i = 0; i < NUM_CHARS; ++i) {
+        char letter = 'a' + i;
+        string next_prefix = currPrefix + letter;
+        SaveDictionaryHelper(curr->children[i], next_prefix, outFile);
+    }
 }
