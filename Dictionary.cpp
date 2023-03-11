@@ -20,13 +20,13 @@ Dictionary::Dictionary() {      //default constructor
     Node();                     //call node constructor
 }
 
-Dictionary::Dictionary(const Dictionary &otherDict) {   //2nd constructor
+Dictionary::Dictionary(const Dictionary &otherDict) {   //copy constructor
     root = new Node;            //root to new node
     numWords = 0;               //0 words
     copyOther(otherDict);       //call copy0ther function with parameter otherDict
 }
 
-Dictionary::Dictionary(string filename) {   //loads file into 2nd constructor
+Dictionary::Dictionary(string filename) {   //2nd constructor
     root = new Node;            //root to new node
     numWords = 0;               //0 words
     LoadDictionaryFile(filename);   //loads file
