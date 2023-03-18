@@ -17,7 +17,7 @@ public:
 
     void SetBoard(string board[BOARD_SIZE][BOARD_SIZE]);
 
-    void SolveBoard(bool printBoard, ostream& output);
+    void SolveBoard(bool printBoard, ostream &output);
 
     void SaveSolve(string filename);   // Saves all the words from the last solve.
 
@@ -31,7 +31,7 @@ private:
     int visited[BOARD_SIZE][BOARD_SIZE];
 
     void PrintBoard(ostream& output);
-    void SolveBoardHelper(/* Put any parameters you want/need here */);
+    void SolveBoardHelper(int row, int col, string prefix, int step,  ostream& output);
 };
 
 #endif //BOGGLE_BOGGLE_H
