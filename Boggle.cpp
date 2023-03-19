@@ -1,4 +1,3 @@
-
 #include "Dictionary.h"
 #include "Boggle.h"
 using namespace std;
@@ -67,10 +66,9 @@ void Boggle::SaveSolve(string filename) {
 
 void Boggle::PrintBoard(ostream &output) {
     for (int i = 0; i < BOARD_SIZE; i++) {
-        output << "  ";
         for (int j = 0; j < BOARD_SIZE; j++) {
-            if (visited[i][j]) {
-                output << "'" << board[i][j] << "'" << " ";
+            if (visited[i][j] != 0) {
+                output << "'" << board[i][j] << "'";
             } else {
                 output << " " << board[i][j] << "  ";
             }
@@ -88,7 +86,7 @@ void Boggle::SolveBoardHelper(int row, int col, string prefix, int step, ostream
     }
 
 // Check if current position has already been visited
-    if (visited[row][col]) {
+    if (visited[row][col] == 1) {
         return;
     }
 
@@ -106,14 +104,14 @@ void Boggle::SolveBoardHelper(int row, int col, string prefix, int step, ostream
         if (!wordsFound.IsWord(prefix)) {
             // Add word to wordsFound dictionary
             wordsFound.AddWord(prefix);
-        }
 
-        bool printBoard;
-        if(printBoard){
-            output << prefix << endl;
+            bool printBoard;
+            if (printBoard == true) {
+                output << prefix << endl;
+            }
+            // Output word to ostream object with its index in the dictionary
+            output << wordsFound.WordCount() << "\t" << prefix << endl;
         }
-        // Output word to ostream object with its index in the dictionary
-        output << wordsFound.IsWord(prefix) << "\t" << prefix << endl;
     }
 
 // Mark current position as visited
@@ -127,9 +125,8 @@ void Boggle::SolveBoardHelper(int row, int col, string prefix, int step, ostream
     SolveBoardHelper(row + 1, col, prefix, step++, output);     // South
     SolveBoardHelper(row + 1, col - 1, prefix, step++, output); // Southwest
     SolveBoardHelper(row, col - 1, prefix, step++, output);     // West
-    SolveBoardHelper(row - 1, col - 1, prefix, step+1, output); // Northwest
+    SolveBoardHelper(row - 1, col - 1, prefix, step++, output); // Northwest
 
 // Mark current position as unvisited
     visited[row][col] = false;
-
 }
