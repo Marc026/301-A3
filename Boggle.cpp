@@ -39,23 +39,15 @@ void Boggle::SetBoard(string board[BOARD_SIZE][BOARD_SIZE]) {
 void Boggle::SolveBoard(bool printBoard, ostream &output) {
     wordsFound.MakeEmpty(); // reset wordsFound dictionary
 
-    if(printBoard) {
-        output << endl;
-    }
 
     for(int i=0; i<BOARD_SIZE; i++) {
         for(int j=0; j<BOARD_SIZE; j++) {
             // Reset visited array for each position on the board
-            for(int k=0; k<BOARD_SIZE; k++) {
-                for(int l=0; l<BOARD_SIZE; l++) {
-                    visited[k][l] = false;
-                }
-            }
 
             // Call SolveBoardHelper for current position on the board
             string prefix;
             int step = 0;
-            SolveBoardHelper(i, j, prefix, 1, output);
+            SolveBoardHelper(i, j, prefix, 1, output, printBoard);
         }
     }
 }
@@ -68,9 +60,9 @@ void Boggle::PrintBoard(ostream &output) {
     for (int i = 0; i < BOARD_SIZE; i++) {
         for (int j = 0; j < BOARD_SIZE; j++) {
             if (visited[i][j] != 0) {
-                output << "'" << board[i][j] << "'";
+                output << " '" << board[i][j] << "' ";
             } else {
-                output << " " << board[i][j] << "  ";
+                output << "  " << board[i][j] << "  ";
             }
         }
         output << endl;
@@ -78,7 +70,7 @@ void Boggle::PrintBoard(ostream &output) {
     output << endl;
 }
 
-void Boggle::SolveBoardHelper(int row, int col, string prefix, int step, ostream& output) {
+void Boggle::SolveBoardHelper(int row, int col, string prefix, int step, ostream& output, bool printBoard) {
 
     // Check if current position is valid
     if (row < 0 || col < 0 || row >= BOARD_SIZE || col >= BOARD_SIZE) {
@@ -105,28 +97,35 @@ void Boggle::SolveBoardHelper(int row, int col, string prefix, int step, ostream
             // Add word to wordsFound dictionary
             wordsFound.AddWord(prefix);
 
-            bool printBoard;
-            if (printBoard == true) {
-                output << prefix << endl;
-            }
             // Output word to ostream object with its index in the dictionary
-            output << wordsFound.WordCount() << "\t" << prefix << endl;
+            if(wordsFound.WordCount() > 0 && printBoard != true){
+                output << wordsFound.WordCount() << "\t" << prefix << endl;
+            }
+            if (printBoard == true) {
+                output << "Word: " << prefix << endl;
+                output << "Number of Words: " << wordsFound.WordCount() << endl;
+                PrintBoard(output);
+                //step++;
+            }
         }
     }
+
+
 
 // Mark current position as visited
     visited[row][col] = true;
 
 // Recursively check surrounding positions
-    SolveBoardHelper(row - 1, col, prefix, step++, output);     // North
-    SolveBoardHelper(row - 1, col + 1, prefix, step++, output); // Northeast
-    SolveBoardHelper(row, col + 1, prefix, step++, output);     // East
-    SolveBoardHelper(row + 1, col + 1, prefix, step++, output); // Southeast
-    SolveBoardHelper(row + 1, col, prefix, step++, output);     // South
-    SolveBoardHelper(row + 1, col - 1, prefix, step++, output); // Southwest
-    SolveBoardHelper(row, col - 1, prefix, step++, output);     // West
-    SolveBoardHelper(row - 1, col - 1, prefix, step++, output); // Northwest
+    SolveBoardHelper(row - 1, col, prefix, step++, output, printBoard);     // North
+    SolveBoardHelper(row - 1, col + 1, prefix, step++, output, printBoard); // Northeast
+    SolveBoardHelper(row, col + 1, prefix, step++, output, printBoard);     // East
+    SolveBoardHelper(row + 1, col + 1, prefix, step++, output, printBoard); // Southeast
+    SolveBoardHelper(row + 1, col, prefix, step++, output, printBoard);     // South
+    SolveBoardHelper(row + 1, col - 1, prefix, step++, output, printBoard); // Southwest
+    SolveBoardHelper(row, col - 1, prefix, step++, output, printBoard);     // West
+    SolveBoardHelper(row - 1, col - 1, prefix, step++, output, printBoard); // Northwest
 
 // Mark current position as unvisited
     visited[row][col] = false;
+
 }

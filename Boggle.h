@@ -31,7 +31,7 @@ private:
     int visited[BOARD_SIZE][BOARD_SIZE];
 
     void PrintBoard(ostream& output);
-    void SolveBoardHelper(int row, int col, string prefix, int step,  ostream& output);
+    void SolveBoardHelper(int row, int col, string prefix, int step,  ostream& output, bool printBoard);
 };
 
 #endif //BOGGLE_BOGGLE_H
