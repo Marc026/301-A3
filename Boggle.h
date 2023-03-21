@@ -30,8 +30,8 @@ private:
     string board[BOARD_SIZE][BOARD_SIZE];
     int visited[BOARD_SIZE][BOARD_SIZE];
 
-    void PrintBoard(ostream& output);
-    void SolveBoardHelper(int row, int col, string prefix, int step,  ostream& output, bool printBoard);
+    void PrintBoard(ostream& output, string prefix);
+    void SolveBoardHelper(int row, int col, string prefix, int step,  ostream& output, bool printBoard, int orderCounter);
 };
 
 #endif //BOGGLE_BOGGLE_H
