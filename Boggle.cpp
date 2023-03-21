@@ -73,49 +73,49 @@ void Boggle::PrintBoard(ostream &output, string prefix) { //prints board to outp
 
 void Boggle::SolveBoardHelper(int row, int col, string prefix, int step, ostream& output, bool printBoard, int orderCounter) {
 
-    // Check if current position is valid
+                                                                // Check if current position is valid
     if (row < 0 || col < 0 || row >= BOARD_SIZE || col >= BOARD_SIZE) {
         return;
     }
 
-// Check if current position has already been visited
+                                    // Check if current position has already been visited
     if (visited[row][col] > 0) {
         return;
     }
 
-// Add current letter to prefix
+                                    // Add current letter to prefix
     prefix += board[row][col];
 
-// Check if prefix is a valid prefix
+                                    // Check if prefix is a valid prefix
     if (!dict.IsPrefix(prefix)) {
         return;
     }
 
-    //increment in which it has visited that position
+                                    //increment in which it has visited that position
     orderCounter++;
-    // Mark current position as visited
+                                    // Mark current position as visited
     visited[row][col] = orderCounter;
 
-// Check if prefix is a valid word
+                                    // Check if prefix is a valid word
     if (dict.IsWord(prefix)) {
-        // Check if word is already found
+                                    // Check if word is already found
         if (!wordsFound.IsWord(prefix)) {
-            // Add word to wordsFound dictionary
+                                    // Add word to wordsFound dictionary
             wordsFound.AddWord(prefix);
 
-            // Output word to ostream object with its index in the dictionary
+                                    // Output word to ostream object with its index in the dictionary
             if(wordsFound.WordCount() > 0 && printBoard != true){
                 output << wordsFound.WordCount() << "\t" << prefix << endl;
             }
-            if (printBoard == true) {   //if user wants to display board
-                output << "Word: " << prefix << endl;   //output the info
+            if (printBoard == true) {                                           //if user wants to display board
+                output << "Word: " << prefix << endl;                               //output the info
                 output << "Number of Words: " << wordsFound.WordCount() << endl;    //output info
                 PrintBoard(output, prefix);
             }
         }
     }
 
-// Recursively check surrounding positions
+                                // Recursively check surrounding positions
     SolveBoardHelper(row - 1, col, prefix, step++, output, printBoard,  orderCounter);     // North
     SolveBoardHelper(row - 1, col + 1, prefix, step++, output, printBoard,  orderCounter); // Northeast
     SolveBoardHelper(row, col + 1, prefix, step++, output, printBoard,  orderCounter);     // East
@@ -124,7 +124,7 @@ void Boggle::SolveBoardHelper(int row, int col, string prefix, int step, ostream
     SolveBoardHelper(row + 1, col - 1, prefix, step++, output, printBoard,  orderCounter); // Southwest
     SolveBoardHelper(row, col - 1, prefix, step++, output, printBoard,  orderCounter);     // West
     SolveBoardHelper(row - 1, col - 1, prefix, step++, output, printBoard,  orderCounter); // Northwest
-// Mark current position as unvisited
-    visited[row][col] = false;
+
+    visited[row][col] = false;      // Mark current position as unvisited
 
 }
