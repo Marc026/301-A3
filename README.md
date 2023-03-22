@@ -39,8 +39,19 @@ and pushing regularly.
    `Node` definition to accommodate the extra characters?
    
    ```c++
+   const int NUM_CHARS = 149186;
    class Node {
     // Your answer here
+   public:
+    bool IsWord;
+   struct Node* children[NUM_CHARS];  // array of child nodes
+   
+    Node()  {
+        for (int i = 0; i < NUM_CHARS; ++i) {
+            children[i] = nullptr;
+            }
+   IsWord = false;
+        }
    };
    ```
    
@@ -48,24 +59,32 @@ and pushing regularly.
     `dictionary.txt` file. In the worse case scenario, how many comparisons 
     would it take to find out if a word is in the dictionary?
     
-    > Your answer here
+    > Worst case scenario would be that it will search the entire height of the tree at O(n) since search, insertion, 
+      deletion within a BST is ordered.
 
 3.  Suppose you use a prefix tree to store the words from the `dictionary.txt` 
     file. In the worse case scenario, how many comparisons would it 
     take to find out if a word is in the dictionary using the `Dictionary` 
     class?
     
-    > Your answer here
+    > Assuming that O(n) is the length of the longest word in the dictionary to find the appropiate path as well 
+      as its length in the prefix tree would also be O(n).
 
 4.  Why is the prefix tree better than a binary search tree for implementing 
     Boggle?
 
-    > Your answer here
+    > Using a prefix tree is much better than a binary search tree because it can use a given set of letters to find 
+      all possible words and not just exact matches. This is very useful in Boggle as players can find as many words possible
+      with the letters given to us on a board.
+
 
 5.  Suppose you do not use `IsPrefix` in your `SolveBoard` implementation.  
     How would that affect the program?
 
-    > Your answer here
+    > Without IsPrefix, it would cause SolveBoard to be very inefficient, causing it to search on a wider search space 
+      and looking at every possible combination of letters on the board. It would still be able to  find all valid 
+      words but be much slower and inefficient. Having IsPrefix would reduce the search space and  eliminate paths that 
+      do not lead to valid words. 
 
 ## Recommended Implementation Order
 
